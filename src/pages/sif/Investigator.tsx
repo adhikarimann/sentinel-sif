@@ -130,7 +130,7 @@ function StructuredCard({ a }: { a: Analysis }) {
           </div>
         )}
         <p className="mt-3 font-mono-tech text-[9.5px] uppercase tracking-[0.14em] text-muted-foreground/70">
-          Engine: {a.engine} · deterministic fallback · no external API required
+          Engine: {a.engine} · deterministic · executes in-browser · no external API
         </p>
       </div>
     </div>
@@ -331,11 +331,12 @@ export default function Investigator() {
           </Panel>
 
           {/* How it works */}
-          <Panel title="Architecture" sub="INPUT → NLP ENGINE → CLASSIFICATION → RULE MAPPING → PRECURSOR EXTRACTION">
+          <Panel title="Pipeline" sub="INPUT → NLP ENGINE → CLASSIFICATION → RULE MAPPING → PRECURSOR EXTRACTION">
             <p className="text-[12.5px] leading-relaxed text-muted-foreground">
               A deterministic keyword + term-similarity engine scores narratives locally in the
-              browser. The classifier module is a drop-in seam for an LLM backend — same JSON
-              contract, no UI changes. Every score is explainable and reproducible.
+              browser — no API key, no telemetry. <span className="font-mono-tech text-[11.5px]">classifyReport()</span>{" "}
+              is the single seam: an LLM engine returning the same JSON contract drops in without
+              touching a single screen. Every score is explainable and reproducible.
             </p>
           </Panel>
         </div>
@@ -352,7 +353,7 @@ export default function Investigator() {
               >
                 <Panel
                   title="NLP engine"
-                  sub="Deterministic fallback · running locally"
+                  sub="Deterministic classifier · executing locally"
                   className="relative overflow-hidden"
                 >
                   <div
@@ -366,7 +367,7 @@ export default function Investigator() {
                           className={cn(
                             "grid size-4 shrink-0 place-items-center rounded-full border text-[9px] font-bold",
                             i < stageIdx
-                              ? "border-controlled bg-controlled text-white"
+                              ? "border-controlled bg-controlled text-background"
                               : i === stageIdx
                                 ? "border-primary text-primary"
                                 : "border-border text-muted-foreground",
@@ -438,8 +439,7 @@ export default function Investigator() {
             )}
 
             {phase === "idle" && (
-              <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <Panel title="Awaiting analysis" sub="Pick a preloaded demo report or paste your own narrative">
+              <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>                  <Panel title="Awaiting input" sub="Pick a preloaded demo report or paste your own narrative">
                   <div className="space-y-2.5">
                     <p className="text-[12.5px] leading-relaxed text-muted-foreground">
                       SIF Sentinel reads the narrative, maps it to an IOGP Life-Saving Rule, extracts

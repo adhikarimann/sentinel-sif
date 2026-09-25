@@ -5,6 +5,11 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import "./index.css";
 
+// SIF SENTINEL ships dark-first (control-room look): enable the dark theme
+// before first paint so no light flash is visible on load.
+document.documentElement.classList.add("dark");
+document.documentElement.style.colorScheme = "dark";
+
 // Lazy load route components for better code splitting
 const App = lazy(() => import("./App.tsx"));
 
@@ -84,7 +89,7 @@ createRoot(document.getElementById("root")!).render(
           <App />
         </Suspense>
       </BrowserRouter>
-      <Toaster />
+      <Toaster theme="dark" />
     </RootErrorBoundary>
   </StrictMode>,
 );

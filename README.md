@@ -82,6 +82,7 @@ identical across reloads so the demo is reproducible during a presentation.
 
 ## Design language
 
-Minimalism theme: off-white paper background with a faint engineering grid, charcoal ink,
+Dark, technical, developer-facing: deep blue-charcoal control-room surfaces, near-white ink,
 safety-orange accent, IBM Plex Sans/Mono typography, compact bordered panels, tabular numerals,
-emoji used as safety visual language (🔴🟠🟡🟢 ⚠️🛑🔒🕳️🔥🧗🏗️🚧🚗).
+translucent risk washes (🔴🟠🟡🟢), and emoji as safety visual language
+(⚠️🛑🔒🕳️🔥🧗🏗️🚧🚗). Dark mode is enabled at startup — the app is dark-first by design.

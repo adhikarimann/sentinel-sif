@@ -78,7 +78,7 @@ function AlertCard({ a, index }: { a: (typeof alerts)[number]; index: number }) 
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06, duration: 0.28 }}
-      className="group flex flex-col justify-between rounded-md border border-border bg-card p-4 transition-shadow hover:shadow-[0_2px_10px_rgba(15,18,25,0.07)]"
+      className="group flex flex-col justify-between rounded-md border border-border bg-card p-4 transition-all hover:border-foreground/20 hover:shadow-[0_4px_16px_rgba(0,0,0,0.45)]"
     >
       <div>
         <div className="flex items-center justify-between gap-2">
@@ -116,20 +116,20 @@ function TrendChart() {
         <AreaChart data={trend} margin={{ top: 6, right: 4, left: -22, bottom: 0 }}>
           <defs>
             <linearGradient id="sifArea" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="oklch(0.645 0.208 47)" stopOpacity={0.28} />
-              <stop offset="100%" stopColor="oklch(0.645 0.208 47)" stopOpacity={0.02} />
+              <stop offset="0%" stopColor="oklch(0.64 0.2 25)" stopOpacity={0.32} />
+              <stop offset="100%" stopColor="oklch(0.64 0.2 25)" stopOpacity={0.02} />
             </linearGradient>
           </defs>
-          <CartesianGrid stroke="oklch(0.915 0.004 90)" strokeDasharray="2 4" vertical={false} />
+          <CartesianGrid stroke="oklch(1 0 0 / 8%)" strokeDasharray="2 4" vertical={false} />
           <XAxis
             dataKey="label"
-            tick={{ fontSize: 10, fill: "oklch(0.517 0.01 260)" }}
+            tick={{ fontSize: 10, fill: "oklch(0.66 0.012 255)" }}
             tickLine={false}
-            axisLine={{ stroke: "oklch(0.915 0.004 90)" }}
+            axisLine={{ stroke: "oklch(1 0 0 / 12%)" }}
             interval={1}
           />
           <YAxis
-            tick={{ fontSize: 10, fill: "oklch(0.517 0.01 260)" }}
+            tick={{ fontSize: 10, fill: "oklch(0.66 0.012 255)" }}
             tickLine={false}
             axisLine={false}
             allowDecimals={false}
@@ -137,17 +137,20 @@ function TrendChart() {
           <ReTooltip
             contentStyle={{
               borderRadius: 6,
-              border: "1px solid oklch(0.915 0.004 90)",
+              border: "1px solid oklch(1 0 0 / 14%)",
+              background: "oklch(0.21 0.014 255)",
+              color: "oklch(0.93 0.005 250)",
               fontSize: 11,
-              boxShadow: "0 2px 10px rgba(15,18,25,0.08)",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.5)",
             }}
             labelStyle={{ fontWeight: 600 }}
+            itemStyle={{ color: "oklch(0.93 0.005 250)" }}
           />
           <Area
             type="monotone"
             dataKey="high"
             name="High SIF potential"
-            stroke="oklch(0.55 0.205 26)"
+            stroke="oklch(0.64 0.2 25)"
             strokeWidth={1.5}
             fill="url(#sifArea)"
           />
@@ -155,7 +158,7 @@ function TrendChart() {
             type="monotone"
             dataKey="medium"
             name="Medium"
-            stroke="oklch(0.68 0.16 48)"
+            stroke="oklch(0.76 0.15 55)"
             strokeWidth={1.5}
             fillOpacity={0}
           />

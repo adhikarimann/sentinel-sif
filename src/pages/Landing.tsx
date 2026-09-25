@@ -51,10 +51,11 @@ export default function Landing() {
             Safety signals hiding inside everyday reports.
           </h1>
           <p className="mt-3.5 max-w-xl text-[14px] leading-relaxed text-muted-foreground">
-            Every day, hundreds of UA/UC observations, near-misses and incident narratives cross the
-            HSE desk. SIF Sentinel reads them, surfaces the ones carrying{" "}
-            <span className="font-medium text-foreground">SIF potential</span>, and shows the
-            recurring barrier failures behind them — so attention lands where exposure is real.
+            Every shift produces hundreds of UA/UC observations, near-misses and incident
+            narratives. SIF SENTINEL runs them through a deterministic classification pipeline,
+            surfaces the ones carrying <span className="font-medium text-foreground">SIF potential</span>,
+            and traces the recurring barrier failures behind them — so HSE attention lands where
+            exposure is real.
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
             <Link
@@ -104,17 +105,17 @@ export default function Landing() {
             >
               <Link
                 to={n.to}
-                className="group block rounded-md border border-border bg-card p-4 transition-shadow hover:shadow-[0_2px_10px_rgba(15,18,25,0.07)]"
+                className="group block rounded-md border border-border bg-card p-4 transition-all hover:border-foreground/20 hover:shadow-[0_4px_16px_rgba(0,0,0,0.45)]"
               >
                 <span className="text-[18px]">{n.emoji}</span>
                 <p className="mt-2 text-[13.5px] font-semibold tracking-tight">{n.label}</p>
                 <p className="mt-1 text-[11.5px] leading-relaxed text-muted-foreground">
                   {
                     [
-                      "Signals worth investigating, ranked for the HSE desk.",
-                      "Paste a narrative — see the precursor chain and risk story.",
-                      "Activities, hazards and barriers as one connected graph.",
-                      "Site × activity heatmap of precursor concentration.",
+                      "Ranked precursor alerts, review queue, density trend.",
+                      "Narrative in, structured risk JSON out — precursor chain included.",
+                      "Activity → hazard → barrier, sized by observation volume.",
+                      "Site × activity matrix of SIF-weighted signal load.",
                     ][i]
                   }
                 </p>

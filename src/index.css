@@ -44,7 +44,8 @@
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Minimalism theme — SIF SENTINEL */
+/* SIF SENTINEL — dark, technical (control-room) theme. Dark is the product's
+   native mode; the light block remains as a fallback for forced-light contexts. */
 :root {
   --radius: 0.375rem;
   --background: oklch(0.985 0.002 90);
@@ -79,7 +80,7 @@
   --sidebar-border: oklch(0.93 0.004 90);
   --sidebar-ring: oklch(0.645 0.208 47);
 
-  /* SIF palette */
+  /* SIF palette (light) */
   --ink: oklch(0.24 0.012 260);
   --ink-soft: oklch(0.38 0.014 260);
   --critical: oklch(0.55 0.205 26);
@@ -93,37 +94,49 @@
 }
 
 .dark {
-  --background: oklch(0.175 0.012 260);
-  --foreground: oklch(0.96 0.003 90);
-  --card: oklch(0.215 0.012 260);
-  --card-foreground: oklch(0.96 0.003 90);
-  --popover: oklch(0.215 0.012 260);
-  --popover-foreground: oklch(0.96 0.003 90);
-  --primary: oklch(0.68 0.19 47);
-  --primary-foreground: oklch(0.14 0.01 260);
-  --secondary: oklch(0.26 0.012 260);
-  --secondary-foreground: oklch(0.96 0.003 90);
-  --muted: oklch(0.26 0.012 260);
-  --muted-foreground: oklch(0.68 0.01 260);
-  --accent: oklch(0.29 0.02 50);
-  --accent-foreground: oklch(0.9 0.06 60);
-  --destructive: oklch(0.62 0.19 25);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.68 0.19 47);
-  --chart-1: oklch(0.68 0.19 47);
-  --chart-2: oklch(0.62 0.19 25);
-  --chart-3: oklch(0.79 0.14 85);
-  --chart-4: oklch(0.64 0.12 155);
-  --chart-5: oklch(0.68 0.04 250);
-  --sidebar: oklch(0.2 0.012 260);
-  --sidebar-foreground: oklch(0.96 0.003 90);
-  --sidebar-primary: oklch(0.68 0.19 47);
-  --sidebar-primary-foreground: oklch(0.14 0.01 260);
-  --sidebar-accent: oklch(0.29 0.02 50);
-  --sidebar-accent-foreground: oklch(0.9 0.06 60);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.68 0.19 47);
+  --background: oklch(0.165 0.014 255);
+  --foreground: oklch(0.93 0.005 250);
+  --card: oklch(0.195 0.014 255);
+  --card-foreground: oklch(0.93 0.005 250);
+  --popover: oklch(0.21 0.014 255);
+  --popover-foreground: oklch(0.93 0.005 250);
+  --primary: oklch(0.71 0.185 47);
+  --primary-foreground: oklch(0.16 0.02 50);
+  --secondary: oklch(0.25 0.013 255);
+  --secondary-foreground: oklch(0.9 0.006 250);
+  --muted: oklch(0.245 0.013 255);
+  --muted-foreground: oklch(0.66 0.012 255);
+  --accent: oklch(0.27 0.03 50);
+  --accent-foreground: oklch(0.9 0.07 60);
+  --destructive: oklch(0.63 0.2 25);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: oklch(0.71 0.185 47);
+  --chart-1: oklch(0.71 0.185 47);
+  --chart-2: oklch(0.63 0.2 25);
+  --chart-3: oklch(0.83 0.13 90);
+  --chart-4: oklch(0.7 0.13 155);
+  --chart-5: oklch(0.7 0.04 250);
+  --sidebar: oklch(0.145 0.014 255);
+  --sidebar-foreground: oklch(0.93 0.005 250);
+  --sidebar-primary: oklch(0.71 0.185 47);
+  --sidebar-primary-foreground: oklch(0.16 0.02 50);
+  --sidebar-accent: oklch(0.24 0.02 50);
+  --sidebar-accent-foreground: oklch(0.9 0.07 60);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.71 0.185 47);
+
+  /* SIF palette (dark — luminous signals, translucent washes) */
+  --ink: oklch(0.93 0.005 250);
+  --ink-soft: oklch(0.72 0.01 255);
+  --critical: oklch(0.64 0.2 25);
+  --critical-soft: oklch(0.64 0.2 25 / 0.13);
+  --attention: oklch(0.76 0.15 55);
+  --attention-soft: oklch(0.76 0.15 55 / 0.14);
+  --watch: oklch(0.84 0.13 90);
+  --watch-soft: oklch(0.84 0.13 90 / 0.14);
+  --controlled: oklch(0.72 0.13 155);
+  --controlled-soft: oklch(0.72 0.13 155 / 0.12);
 }
 
 @layer base {
@@ -143,7 +156,12 @@
     cursor: pointer;
   }
   ::selection {
-    background: oklch(0.645 0.208 47 / 0.18);
+    background: oklch(0.71 0.185 47 / 0.32);
+  }
+  /* thin dark scrollbars so panels feel instrument-like */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(1 0 0 / 14%) transparent;
   }
 }
 
@@ -155,11 +173,11 @@
   .tabular-nums {
     font-variant-numeric: tabular-nums;
   }
-  /* subtle engineering paper grid */
+  /* subtle engineering grid — token-based so it adapts to dark */
   .bg-grid-faint {
     background-image:
-      linear-gradient(to right, oklch(0.24 0.012 260 / 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(0.24 0.012 260 / 0.035) 1px, transparent 1px);
+      linear-gradient(to right, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
     background-size: 44px 44px;
   }
   .animate-scan {
@@ -173,6 +191,16 @@
   }
   .animate-blink-dot {
     animation: sif-blink 1.4s ease-in-out infinite;
+  }
+}
+
+@layer base {
+  .dark body {
+    background-image: radial-gradient(
+      1200px 500px at 50% -140px,
+      oklch(0.71 0.185 47 / 0.05),
+      transparent 70%
+    );
   }
 }
 

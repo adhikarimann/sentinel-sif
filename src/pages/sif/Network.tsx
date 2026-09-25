@@ -21,10 +21,10 @@ const KIND_STYLE: Record<
   NetNode["kind"],
   { ring: string; fill: string; text: string; label: string }
 > = {
-  ACTIVITY: { ring: "stroke-primary", fill: "fill-primary/10", text: "text-foreground", label: "Activity" },
-  HAZARD: { ring: "stroke-critical/60", fill: "fill-critical/10", text: "text-foreground", label: "Hazard" },
-  BARRIER: { ring: "stroke-controlled/70", fill: "fill-controlled/10", text: "text-foreground", label: "Barrier" },
-  PRECURSOR: { ring: "stroke-critical", fill: "fill-critical", text: "text-white", label: "Precursor" },
+  ACTIVITY: { ring: "stroke-primary", fill: "fill-primary/15", text: "text-foreground", label: "Activity" },
+  HAZARD: { ring: "stroke-critical/70", fill: "fill-critical/15", text: "text-foreground", label: "Hazard" },
+  BARRIER: { ring: "stroke-controlled/80", fill: "fill-controlled/15", text: "text-foreground", label: "Barrier" },
+  PRECURSOR: { ring: "stroke-critical", fill: "fill-critical", text: "text-background", label: "Precursor" },
 };
 
 function radius(weight: number, max: number) {
@@ -134,9 +134,9 @@ export default function Network() {
                   <span
                     className={cn(
                       "inline-block size-2.5 rounded-full",
-                      k === "ACTIVITY" && "bg-primary/40 ring-1 ring-primary",
-                      k === "HAZARD" && "bg-critical/30 ring-1 ring-critical/60",
-                      k === "BARRIER" && "bg-controlled/30 ring-1 ring-controlled/70",
+                      k === "ACTIVITY" && "bg-primary/50 ring-1 ring-primary",
+                      k === "HAZARD" && "bg-critical/40 ring-1 ring-critical/70",
+                      k === "BARRIER" && "bg-controlled/40 ring-1 ring-controlled/80",
                       k === "PRECURSOR" && "bg-critical",
                     )}
                   />

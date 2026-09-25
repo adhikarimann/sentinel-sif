@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 import { SignalDot } from "./ui";
 
 const NAV = [
-  { to: "/command-center", emoji: "🛰", label: "Command Center", hint: "Signals & alerts" },
-  { to: "/investigator", emoji: "🔍", label: "Report Investigator", hint: "Analyse a report" },
-  { to: "/network", emoji: "🧬", label: "Precursor Network", hint: "Connections & patterns" },
-  { to: "/sites", emoji: "📍", label: "Site Intelligence", hint: "Heatmap by site" },
+  { to: "/command-center", emoji: "🛰", label: "Command Center", hint: "Alert triage & trend" },
+  { to: "/investigator", emoji: "🔍", label: "Report Investigator", hint: "Narrative classifier" },
+  { to: "/network", emoji: "🧬", label: "Precursor Network", hint: "Hazard–barrier graph" },
+  { to: "/sites", emoji: "📍", label: "Site Intelligence", hint: "Site × activity matrix" },
 ] as const;
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <aside className="sticky top-0 hidden h-screen w-[232px] shrink-0 flex-col border-r border-border bg-sidebar md:flex">
           <div className="border-b border-border px-5 py-4">
             <div className="flex items-center gap-2">
-              <span className="grid size-7 place-items-center rounded-[5px] bg-primary text-[13px] font-bold text-primary-foreground">
+              <span className="grid size-7 place-items-center rounded-[5px] bg-primary font-mono-tech text-[13px] font-bold text-primary-foreground">
                 S
               </span>
               <div>

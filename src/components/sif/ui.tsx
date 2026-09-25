@@ -19,7 +19,7 @@ export function Panel({
   return (
     <section
       className={cn(
-        "rounded-md border border-border bg-card shadow-[0_1px_2px_rgba(15,18,25,0.04)]",
+        "rounded-md border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.35)]",
         className,
       )}
     >
@@ -53,15 +53,16 @@ export function SectionLabel({ children, className }: { children: React.ReactNod
   );
 }
 
+/** Level tones as translucent washes + colored text — tuned to read on dark. */
 const TONES = {
-  critical: "bg-critical text-white",
-  attention: "bg-attention text-white",
-  watch: "bg-watch text-foreground",
-  controlled: "bg-controlled text-white",
+  critical: "bg-critical-soft text-critical border border-critical/25",
+  attention: "bg-attention-soft text-attention border border-attention/25",
+  watch: "bg-watch-soft text-watch border border-watch/25",
+  controlled: "bg-controlled-soft text-controlled border border-controlled/25",
   ink: "bg-foreground text-background",
 } as const;
 
-/** Small solid chip with level dot — used for status pills. */
+/** Small level chip — used for status pills and severity tags. */
 export function RiskPill({
   tone,
   children,
@@ -84,6 +85,27 @@ export function RiskPill({
   );
 }
 
+const DOT_BG: Record<keyof typeof TONES, string> = {
+  critical: "bg-critical",
+  attention: "bg-attention",
+  watch: "bg-watch",
+  controlled: "bg-controlled",
+  ink: "bg-foreground",
+};
+
+/** Live engine status dot. */
+export function SignalDot({ tone = "controlled", blink = false }: { tone?: keyof typeof TONES; blink?: boolean }) {
+  return (
+    <span
+      className={cn(
+        "inline-block size-1.5 rounded-full",
+        DOT_BG[tone],
+        blink ? "animate-blink-dot" : "animate-pulse-dot",
+      )}
+    />
+  );
+}
+
 /** Solid-colour square used in the site heatmap. */
 export function HeatSquare({
   level,
@@ -98,10 +120,10 @@ export function HeatSquare({
 }) {
   const bg =
     level === "high"
-      ? "bg-critical/85 hover:bg-critical"
+      ? "bg-critical/70 hover:bg-critical/90"
       : level === "medium"
-        ? "bg-attention/75 hover:bg-attention"
-        : "bg-controlled/25 hover:bg-controlled/40";
+        ? "bg-attention/60 hover:bg-attention/80"
+        : "bg-controlled/20 hover:bg-controlled/35";
   return (
     <button
       type="button"
@@ -111,19 +133,6 @@ export function HeatSquare({
         "h-9 w-full rounded-[3px] transition-all duration-150",
         bg,
         selected && "ring-2 ring-foreground ring-offset-2 ring-offset-background",
-      )}
-    />
-  );
-}
-
-/** Live engine status dot. */
-export function SignalDot({ tone = "controlled", blink = false }: { tone?: keyof typeof TONES; blink?: boolean }) {
-  return (
-    <span
-      className={cn(
-        "inline-block size-1.5 rounded-full",
-        TONES[tone].split(" ")[0],
-        blink ? "animate-blink-dot" : "animate-pulse-dot",
       )}
     />
   );
